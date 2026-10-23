@@ -20,11 +20,32 @@
       <span class="brand-line" aria-hidden="true"></span>
       <span class="brand-tag">local-only</span>
     </a>
-    <nav class="site-nav" id="siteNav" aria-label="Tool categories"></nav>
     <div class="header-actions">
       <span class="privacy-pill" title="Every tool runs in your browser. No uploads, no tracking, no servers.">
         <span class="dot" aria-hidden="true"></span> 100% on-device
       </span>
+    </div>
+    <div class="tools-trigger" id="toolsTrigger">
+      <button type="button" id="toolsMenuBtn" aria-haspopup="true" aria-expanded="false">
+        <span>Tools</span>
+        <span class="caret" aria-hidden="true"></span>
+      </button>
+      <div class="tools-menu" id="toolsMenu" role="menu" aria-label="All tools">
+        <div class="tools-menu-top">
+          <span class="mono-label dim">All workbenches</span>
+          <form class="tools-search" data-nav role="search">
+            <span class="search-ico" aria-hidden="true">⌕</span>
+            <input type="search" id="toolsSearch" placeholder="Filter tools…" autocomplete="off" spellcheck="false" />
+            <kbd class="search-kbd">/</kbd>
+          </form>
+        </div>
+        <div class="tools-menu-cats" id="toolsMenuCats"></div>
+        <div class="tools-menu-empty" id="toolsMenuEmpty" hidden>No tools match that filter.</div>
+        <footer class="tools-menu-foot">
+          <a class="btn ghost small" href="#/" data-nav><span class="arrow">←</span> All tools</a>
+          <span class="tools-menu-hint dim">nothing leaves your browser</span>
+        </footer>
+      </div>
     </div>
   </header>
   <main id="app" tabindex="-1"></main>
