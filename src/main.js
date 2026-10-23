@@ -12,6 +12,26 @@ const nav = document.getElementById("siteNav");
 
 const NAV_LABEL = { developer: "Developer", files: "Files", creative: "Creative", writing: "Writing" };
 
+// Every deploy rotates the hashed chunk filenames while GitHub Pages caches
+// index.html for 10 minutes, so a page loaded before a deploy asks for chunks
+// that no longer exist. Reload once to pick up the new build; the timestamp
+// guard stops a reload loop if the chunk is genuinely missing.
+const STALE_RELOAD_KEY = "sds:stale-reload";
+const STALE_ERROR = /dynamically imported module|Importing a module script failed|error loading dynamically/i;
+
+function reloadOnceForNewBuild() {
+  const now = Date.now();
+  if (now - Number(sessionStorage.getItem(STALE_RELOAD_KEY) || 0) < 15000) return false;
+  sessionStorage.setItem(STALE_RELOAD_KEY, String(now));
+  location.reload();
+  return true;
+}
+
+window.addEventListener("vite:preloadError", (e) => {
+  e.preventDefault();
+  reloadOnceForNewBuild();
+});
+
 function buildNav() {
   nav.innerHTML = CATEGORIES.map(
     (c) => `<a href="#/cat/${c.id}" data-cat="${c.id}">${NAV_LABEL[c.id] || c.name}</a>`
@@ -80,6 +100,7 @@ async function handleRoute() {
     `;
     await mount(app.querySelector(".tool-body"), tool);
   } catch (err) {
+    if (STALE_ERROR.test(err.message || "") && reloadOnceForNewBuild()) return;
     console.error(err);
     app.innerHTML = `<div class="wrapper" style="padding:40px 24px;">
       <h1 style="font-size:28px;">Something went wrong opening this workbench.</h1>
