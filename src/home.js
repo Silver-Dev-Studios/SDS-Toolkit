@@ -25,7 +25,7 @@ export function renderHome(root) {
   root.innerHTML = `
     <section class="hero">
       <div class="hero-main">
-        <div class="kicker">Silver Dev Studio · Toolshelf</div>
+        <div class="kicker">Silver Dev Studio · Toolkit</div>
         <h1>A home for tools that <em>solve real problems.</em></h1>
         <p class="lede">SDS Toolkit is a collection of free, <strong>privacy-friendly</strong> tools that run entirely in your browser. Developer utilities, image helpers, creative generators and writing companions — each one independently useful, none of them ever transmit a byte of your data.</p>
       </div>
