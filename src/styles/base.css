@@ -330,17 +330,7 @@ table.tbl td { padding: 7px 10px; border-bottom: 1px solid var(--card-border); v
 .stat-grid.wc { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 620px) { .stat-grid.wc { grid-template-columns: repeat(2, 1fr); } }
 
-/* ---------- headers / init ---------- */
-.tool-intro {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 22px;
-}
-.tool-intro .crumb { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
-.tool-intro h1 { font-size: clamp(30px, 4.6vw, 46px); }
-.tool-intro .desc { font-family: var(--serif); font-style: italic; color: var(--ink-2); font-size: 16.5px; max-width: 640px; }
-
+/* ---------- init ---------- */
 .wrapper { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
 .dl-drop {
